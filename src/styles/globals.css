@@ -228,48 +228,44 @@ button, a[role="button"] {
   -webkit-overflow-scrolling: touch;
 }
 
-/* Landscape orientation optimizations */
-@media screen and (orientation: landscape) and (max-height: 500px) {
-  /* Compact headers in landscape */
+/* Landscape optimizations */
+@media (orientation: landscape) and (max-height: 500px) {
   .landscape-compact-header {
-    padding-top: 0.5rem !important;
-    padding-bottom: 0.5rem !important;
-  }
-  
-  /* Reduce vertical spacing in landscape */
-  .landscape-compact-spacing {
     padding-top: 0.75rem !important;
     padding-bottom: 0.75rem !important;
   }
   
-  /* Make bottom nav more compact */
-  .landscape-compact-nav {
-    padding-top: 0.25rem !important;
-    padding-bottom: 0.25rem !important;
-  }
-  
-  /* Adjust content padding for landscape */
   .landscape-content {
     padding-top: 1rem !important;
     padding-bottom: 1rem !important;
   }
-  
-  /* Two-column layout for landscape */
-  .landscape-two-col {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+
+/* Keyboard animations */
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
   }
-  
-  /* Horizontal scroll for landscape content */
-  .landscape-horizontal-scroll {
-    display: flex;
-    flex-direction: row;
-    overflow-x: auto;
-    gap: 1rem;
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
-  
-  /* Compact cards in landscape */
-  .landscape-compact-card {
-    padding: 0.75rem !important;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.3s ease-out;
+}
+
+/* Keyboard visible state - add padding to prevent content being hidden */
+.keyboard-visible {
+  padding-bottom: 320px;
+  transition: padding-bottom 0.3s ease-out;
+}
+
+@media (orientation: landscape) {
+  .keyboard-visible {
+    padding-bottom: 280px;
   }
 }
 

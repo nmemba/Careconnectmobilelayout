@@ -173,6 +173,7 @@ export const Login = () => {
                     </div>
                     <input
                       type="text"
+                      inputMode="email"
                       id="username"
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}

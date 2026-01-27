@@ -102,6 +102,7 @@ export const RefillRequest = () => {
           <textarea
             id="notes"
             rows={4}
+            inputMode="text"
             className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-600 resize-none"
             placeholder="Any special instructions..."
           />

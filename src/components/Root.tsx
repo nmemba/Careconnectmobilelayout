@@ -1,12 +1,22 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { Outlet, useNavigate, useLocation, Link } from 'react-router';
 import { useApp } from '../context/AppContext';
 import { Home, Pill, Calendar, MessageSquare, Settings as SettingsIcon } from 'lucide-react';
+import { useKeyboardManager } from '../hooks/useKeyboardManager';
+import { MobileKeyboard } from './MobileKeyboard';
 
 export const Root = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { isAuthenticated, leftHandMode } = useApp();
+  const mainRef = useRef<HTMLDivElement>(null);
+  
+  const { 
+    isKeyboardVisible, 
+    keyboardType, 
+    handleKeyPress, 
+    closeKeyboard 
+  } = useKeyboardManager(mainRef);
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -31,10 +41,11 @@ export const Root = () => {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col max-w-screen overflow-x-hidden">
       <main 
-        className={`flex-1 pb-20 landscape:pb-16 overflow-y-scroll ${leftHandMode ? 'scrollbar-left' : ''}`}
+        className={`flex-1 pb-20 landscape:pb-16 overflow-y-scroll ${leftHandMode ? 'scrollbar-left' : ''} ${isKeyboardVisible ? 'keyboard-visible' : ''}`}
         style={{ 
           WebkitOverflowScrolling: 'touch'
         }}
+        ref={mainRef}
       >
         <Outlet />
       </main>
@@ -64,6 +75,16 @@ export const Root = () => {
           })}
         </div>
       </nav>
+
+      {/* Mobile Keyboard */}
+      {isKeyboardVisible && (
+        <MobileKeyboard
+          type={keyboardType}
+          onKeyPress={handleKeyPress}
+          onClose={closeKeyboard}
+          leftHandMode={leftHandMode}
+        />
+      )}
     </div>
   );
 };

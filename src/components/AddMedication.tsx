@@ -57,6 +57,14 @@ export const AddMedication = () => {
     setFormData({ ...formData, times: newTimes });
   };
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 max-w-screen overflow-x-hidden">
       {/* Header */}
@@ -87,7 +95,7 @@ export const AddMedication = () => {
               type="text"
               id="name"
               value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              onChange={handleInputChange}
               className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-600 min-h-[56px]"
               placeholder="e.g., Lisinopril"
               required
@@ -95,16 +103,17 @@ export const AddMedication = () => {
           </div>
 
           <div>
-            <label htmlFor="dose" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="dose" className="block font-semibold text-gray-900 mb-2 landscape:mb-1.5 landscape:text-sm">
               Dose *
             </label>
             <input
               type="text"
+              inputMode="decimal"
               id="dose"
               value={formData.dose}
-              onChange={(e) => setFormData({ ...formData, dose: e.target.value })}
-              className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-600 min-h-[56px]"
-              placeholder="e.g., 10mg"
+              onChange={handleInputChange}
+              className="w-full px-4 landscape:px-3 py-3 landscape:py-2.5 border-2 border-gray-200 rounded-xl landscape:rounded-lg focus:outline-none focus:border-blue-600 min-h-[56px] landscape:min-h-[48px] landscape:text-sm"
+              placeholder="e.g., 10mg, 2 tablets"
               required
             />
           </div>
@@ -171,6 +180,7 @@ export const AddMedication = () => {
             </label>
             <input
               type="number"
+              inputMode="numeric"
               id="refills"
               value={formData.refillsRemaining}
               onChange={(e) => setFormData({ ...formData, refillsRemaining: parseInt(e.target.value) || 0 })}
@@ -187,7 +197,7 @@ export const AddMedication = () => {
               type="text"
               id="pharmacy"
               value={formData.pharmacy}
-              onChange={(e) => setFormData({ ...formData, pharmacy: e.target.value })}
+              onChange={handleInputChange}
               className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-600 min-h-[56px]"
               placeholder="Pharmacy name and location"
             />
