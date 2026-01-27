@@ -10,11 +10,16 @@ import { Calendar } from "./components/Calendar";
 import { Communications } from "./components/Communications";
 import { Settings } from "./components/Settings";
 import { NotFound } from "./components/NotFound";
+import { ScreenshotDemo } from "./pages/ScreenshotDemo";
 
 export const router = createBrowserRouter([
   {
     path: "/login",
     Component: Login,
+  },
+  {
+    path: "/screenshot-demo",
+    Component: ScreenshotDemo,
   },
   {
     path: "/",
