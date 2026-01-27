@@ -30,7 +30,12 @@ export const Root = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col max-w-screen overflow-x-hidden">
-      <main className="flex-1 pb-20 landscape:pb-16 overflow-y-auto">
+      <main 
+        className={`flex-1 pb-20 landscape:pb-16 overflow-y-scroll ${leftHandMode ? 'scrollbar-left' : ''}`}
+        style={{ 
+          WebkitOverflowScrolling: 'touch'
+        }}
+      >
         <Outlet />
       </main>
 

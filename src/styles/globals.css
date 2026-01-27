@@ -309,3 +309,48 @@ button, a[role="button"] {
     z-index: 9999;
   }
 }
+
+/* Left-hand mode scrollbar positioning */
+.scrollbar-left {
+  direction: rtl !important;
+  overflow-y: scroll !important;
+}
+
+.scrollbar-left > * {
+  direction: ltr !important;
+}
+
+/* Custom scrollbar styling for webkit browsers (Chrome, Safari, Edge) */
+.scrollbar-left::-webkit-scrollbar {
+  width: 14px;
+}
+
+.scrollbar-left::-webkit-scrollbar-track {
+  background: rgba(59, 130, 246, 0.1);
+  border-radius: 0;
+}
+
+.scrollbar-left::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.5);
+  border-radius: 7px;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+
+.scrollbar-left::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 130, 246, 0.7);
+  background-clip: padding-box;
+}
+
+.scrollbar-left::-webkit-scrollbar-thumb:active {
+  background: rgba(59, 130, 246, 0.9);
+  background-clip: padding-box;
+}
+
+/* Firefox scrollbar positioning */
+@supports (scrollbar-width: auto) {
+  .scrollbar-left {
+    scrollbar-width: auto;
+    scrollbar-color: rgba(59, 130, 246, 0.5) rgba(59, 130, 246, 0.1);
+  }
+}
