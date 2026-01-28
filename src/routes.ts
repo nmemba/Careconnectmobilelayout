@@ -11,6 +11,8 @@ import { Communications } from "./components/Communications";
 import { Settings } from "./components/Settings";
 import { NotFound } from "./components/NotFound";
 import { ScreenshotDemo } from "./pages/ScreenshotDemo";
+import { WireframeGenerator } from "./pages/WireframeGenerator";
+import { TextScalingDemo } from "./pages/TextScalingDemo";
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +22,14 @@ export const router = createBrowserRouter([
   {
     path: "/screenshot-demo",
     Component: ScreenshotDemo,
+  },
+  {
+    path: "/wireframe",
+    Component: WireframeGenerator,
+  },
+  {
+    path: "/text-scaling-demo",
+    Component: TextScalingDemo,
   },
   {
     path: "/",
